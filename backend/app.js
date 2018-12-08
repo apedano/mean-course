@@ -10,9 +10,21 @@ app.use((req, res,next) => {
   next();
 });
 
+//
+app.use((req, res,next) => {
+  //Cross Origing Resource Sharing
+  console.log('Adding CORS header');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  next();
+});
 
 
 //the next is not in this function so this is a final step f
+// the first input is the filter for the incoming reqest url
 app.use('/api/posts', (req, res,next) => {
   const posts = [
     {
